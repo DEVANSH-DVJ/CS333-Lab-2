@@ -3,8 +3,8 @@
 #include "user.h"
 #include "fcntl.h"
 
-int main(void)
-{
-  printf(1, "Hello, world!\n");
+int main(void) {
+  for (int i = 0; i < 10; i++)
+    hello();
   exit();
 }
