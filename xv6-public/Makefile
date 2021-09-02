@@ -182,6 +182,7 @@ UPROGS=\
 	_wc\
 	_zombie\
 	_testcase-init\
+	_testcase-hello\
 
 
 fs.img: mkfs README $(UPROGS)
