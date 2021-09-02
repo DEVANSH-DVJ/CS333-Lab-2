@@ -181,10 +181,6 @@ UPROGS=\
 	_usertests\
 	_wc\
 	_zombie\
-	_testcase-hello\
-	_testcase-helloyou\
-	_testcase-procinfo\
-	_testcase-fork-welcome\
 	_testcase-init\
 
 
