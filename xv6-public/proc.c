@@ -532,3 +532,20 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int
+sys_getNumProc(void)
+{
+  struct proc *p;
+
+  acquire(&ptable.lock);
+
+  int count = 0;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    if(p->state != UNUSED)
+      count++;
+
+  release(&ptable.lock);
+
+  return count;
+}
