@@ -592,7 +592,10 @@ sys_getProcInfo(void)
     return -1;
   }
 
-  pInfo->ppid = p->parent->pid;
+  if (p->pid == 1)
+    pInfo->ppid = 0;
+  else
+    pInfo->ppid = p->parent->pid;
   pInfo->psize = (int) p->sz;
   pInfo->numberContextSwitches = 0;
 
