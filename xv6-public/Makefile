@@ -184,6 +184,7 @@ UPROGS=\
 	_tc-init\
 	_tc-hello\
 	_tc-helloyou\
+	_tc-procinfo\
 
 
 fs.img: mkfs README $(UPROGS)
