@@ -89,6 +89,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->ncs = 0;
 
   release(&ptable.lock);
 
@@ -125,7 +126,7 @@ userinit(void)
   extern char _binary_initcode_start[], _binary_initcode_size[];
 
   p = allocproc();
-  
+
   initproc = p;
   if((p->pgdir = setupkvm()) == 0)
     panic("userinit: out of memory?");
@@ -276,7 +277,7 @@ wait(void)
   struct proc *p;
   int havekids, pid;
   struct proc *curproc = myproc();
-  
+
   acquire(&ptable.lock);
   for(;;){
     // Scan through table looking for exited children.
@@ -326,7 +327,7 @@ scheduler(void)
   struct proc *p;
   struct cpu *c = mycpu();
   c->proc = 0;
-  
+
   for(;;){
     // Enable interrupts on this processor.
     sti();
@@ -343,6 +344,7 @@ scheduler(void)
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
+      p->ncs++;
 
       swtch(&(c->scheduler), p->context);
       switchkvm();
@@ -419,7 +421,7 @@ void
 sleep(void *chan, struct spinlock *lk)
 {
   struct proc *p = myproc();
-  
+
   if(p == 0)
     panic("sleep");
 
@@ -592,12 +594,12 @@ sys_getProcInfo(void)
     return -1;
   }
 
-  if (p->pid == 1)
+  if (p == initproc) // p->pid == 1
     pInfo->ppid = 0;
   else
     pInfo->ppid = p->parent->pid;
   pInfo->psize = (int) p->sz;
-  pInfo->numberContextSwitches = 0;
+  pInfo->numberContextSwitches = p->ncs;
 
   release(&ptable.lock);
 
