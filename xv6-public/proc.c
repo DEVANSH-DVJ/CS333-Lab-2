@@ -549,3 +549,20 @@ sys_getNumProc(void)
 
   return count;
 }
+
+int
+sys_getMaxPid(void)
+{
+  struct proc *p;
+
+  acquire(&ptable.lock);
+
+  int max = 0;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+    if(p->pid > max)
+      max = p->pid;
+
+  release(&ptable.lock);
+
+  return max;
+}
