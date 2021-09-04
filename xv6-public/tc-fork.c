@@ -4,7 +4,7 @@
 
 void welcome(void) {
   printf(1, "I am child in welcome function\n");
-  // welcomeDone();
+  welcomeDone();
 }
 
 int main(int argc, char *argv[]) {
