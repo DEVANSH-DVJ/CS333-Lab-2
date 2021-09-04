@@ -628,3 +628,17 @@ sys_welcomeFunction(void)
 
   return 0;
 }
+
+int
+sys_welcomeDone(void)
+{
+  acquire(&ptable.lock);
+
+  struct proc *curproc = myproc();
+  curproc->tf->eax = 0;
+  curproc->tf->eip = curproc->neip;
+
+  release(&ptable.lock);
+
+  return 0;
+}

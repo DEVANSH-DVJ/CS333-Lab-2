@@ -109,6 +109,7 @@ extern int sys_getNumProc(void);
 extern int sys_getMaxPid(void);
 extern int sys_getProcInfo(void);
 extern int sys_welcomeFunction(void);
+extern int sys_welcomeDone(void);
 
 static int (*syscalls[])(void) = {
 [SYS_fork]             sys_fork,
@@ -138,6 +139,7 @@ static int (*syscalls[])(void) = {
 [SYS_getMaxPid]        sys_getMaxPid,
 [SYS_getProcInfo]      sys_getProcInfo,
 [SYS_welcomeFunction]  sys_welcomeFunction,
+[SYS_welcomeDone]      sys_welcomeDone,
 };
 
 void

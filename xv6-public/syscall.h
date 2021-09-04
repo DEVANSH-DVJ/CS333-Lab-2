@@ -26,3 +26,4 @@
 #define SYS_getMaxPid       25
 #define SYS_getProcInfo     26
 #define SYS_welcomeFunction 27
+#define SYS_welcomeDone     28
