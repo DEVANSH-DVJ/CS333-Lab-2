@@ -91,6 +91,7 @@ found:
   p->pid = nextpid++;
   p->ncs = 0;
   p->forkfnptr = 0;
+  p->neip = 0;
 
   release(&ptable.lock);
 
@@ -205,6 +206,7 @@ fork(void)
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
+  np->neip = np->tf->eip;
   if (curproc->forkfnptr != 0)
     np->tf->eip = (uint)curproc->forkfnptr;
 
