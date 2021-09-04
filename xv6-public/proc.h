@@ -50,8 +50,8 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
   uint ncs;                    // Number of Context Switches
-  uint forkfnptr;       // Fork pointer
-  uint neip;
+  uint forkfnptr;              // Fork welcome pointer
+  uint forkrneip;              // Fork welcome return eip
 };
 
 // Process memory is laid out contiguously, low addresses first:
