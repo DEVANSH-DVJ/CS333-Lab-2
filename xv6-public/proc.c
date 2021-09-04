@@ -90,6 +90,7 @@ found:
   p->state = EMBRYO;
   p->pid = nextpid++;
   p->ncs = 0;
+  p->forkfnptr = 0;
 
   release(&ptable.lock);
 
