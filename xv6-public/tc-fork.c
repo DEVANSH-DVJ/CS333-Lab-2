@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
     wait();
     printf(1, "Parent reaped first child\n");
 
-    printf(1, "0x%x, %d\n", (uint)&welcome, sizeof(&welcome));
     welcomeFunction(&welcome);
 
     int ret2 = fork();
