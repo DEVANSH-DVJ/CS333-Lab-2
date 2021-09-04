@@ -208,7 +208,7 @@ fork(void)
   np->tf->eax = 0;
   np->neip = np->tf->eip;
   if (curproc->forkfnptr != 0)
-    np->tf->eip = (uint)curproc->forkfnptr;
+    np->tf->eip = curproc->forkfnptr;
 
   for(i = 0; i < NOFILE; i++)
     if(curproc->ofile[i])
@@ -614,14 +614,14 @@ sys_getProcInfo(void)
 int
 sys_welcomeFunction(void)
 {
-  void (*fnptr)(void);
-  if(argptr(0, (void*)&fnptr, sizeof(fnptr)) < 0)
+  int fnptr;
+  if(argint(0, (void*)&fnptr) < 0)
     return -1;
 
   acquire(&ptable.lock);
 
   struct proc *curproc = myproc();
-  curproc->forkfnptr = fnptr;
+  curproc->forkfnptr = (uint)fnptr;
 
   release(&ptable.lock);
 

@@ -50,7 +50,7 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
   uint ncs;                    // Number of Context Switches
-  void (*forkfnptr)(void);       // Fork pointer
+  uint forkfnptr;       // Fork pointer
   uint neip;
 };
 
