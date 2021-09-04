@@ -606,3 +606,9 @@ sys_getProcInfo(void)
 
   return 0;
 }
+
+int
+sys_welcomeFunction(void)
+{
+  return 0;
+}
