@@ -610,5 +610,17 @@ sys_getProcInfo(void)
 int
 sys_welcomeFunction(void)
 {
+  void (*fnptr)(void);
+  if(argptr(0, (void*)&fnptr, sizeof(fnptr)) < 0)
+    return -1;
+
+  cprintf("%x, %d\n", (uint)fnptr, sizeof(fnptr));
+  acquire(&ptable.lock);
+
+  struct proc *curproc = myproc();
+  curproc->forkfnptr = fnptr;
+
+  release(&ptable.lock);
+
   return 0;
 }
