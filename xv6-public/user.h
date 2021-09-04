@@ -29,8 +29,8 @@ int helloYou(const char*);
 int getNumProc(void);
 int getMaxPid(void);
 int getProcInfo(const int, struct processInfo*);
-int welcomeFunction(void (*forkfnptr)(void));
-int welcomeDone();
+int welcomeFunction(void *);
+int welcomeDone(void);
 
 // ulib.c
 int stat(const char*, struct stat*);
