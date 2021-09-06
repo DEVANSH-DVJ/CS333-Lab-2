@@ -7,5 +7,6 @@ int main(void) {
     helloYou("Calling from XV6");
     helloYou("Welcome to XV6");
   }
+
   exit();
 }

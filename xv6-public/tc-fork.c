@@ -12,8 +12,6 @@ int main(int argc, char *argv[]) {
   int ret1 = fork();
   if (ret1 == 0) {
     printf(1, "I am child with no welcome\n");
-    printf(1, "I am child with no welcome\n");
-    printf(1, "I am child with no welcome\n");
   } else if (ret1 > 0) {
     wait();
     printf(1, "Parent reaped first child\n");

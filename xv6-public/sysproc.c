@@ -94,6 +94,7 @@ int
 sys_hello(void)
 {
   cprintf("Hello\n");
+
   return 0;
 }
 
@@ -105,5 +106,6 @@ sys_helloYou(void)
   if(argstr(0, &name) < 0)
     return -1;
   cprintf("%s\n", name);
+
   return 0;
 }
